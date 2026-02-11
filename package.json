@@ -1,0 +1,31 @@
+{
+  "name": "e2e-conduit-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "env:up": "docker compose -f infra/conduit-local/docker-compose.yml up -d --build",
+  "env:down": "docker compose -f infra/conduit-local/docker-compose.yml down -v",
+  "test": "playwright test",
+  "report": "playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-Stanculescu/e2e-conduit-automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Alex-Stanculescu/e2e-conduit-automation/issues"
+  },
+  "homepage": "https://github.com/Alex-Stanculescu/e2e-conduit-automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "dotenv": "^17.2.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "zod": "^4.3.6"
+  }
+}
