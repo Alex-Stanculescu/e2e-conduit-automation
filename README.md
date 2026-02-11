@@ -2,7 +2,7 @@
 
 Playwright end-to-end automation project for the RealWorld **Conduit** app, designed as a portfolio repo to demonstrate practical test automation skills:
 - **UI smoke tests**
-- **API → UI** flows (create data via API, validate via UI)
+- **API and UI** flows (create data via API, validate via UI)
 - **Docker Compose** environment (web + API + DB)
 - **GitHub Actions CI** with uploaded artifacts (HTML report, traces/videos/screenshots)
 
