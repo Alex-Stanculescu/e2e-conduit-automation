@@ -1,0 +1,3 @@
+[submodule "infra/conduit-local"]
+	path = infra/conduit-local
+	url = https://github.com/Alex-Stanculescu/e2e-conduit-local.git
