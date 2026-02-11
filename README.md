@@ -1,3 +1,6 @@
+[![CI - Playwright (Conduit local)](https://github.com/Alex-Stanculescu/e2e-conduit-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/Alex-Stanculescu/e2e-conduit-automation/actions/workflows/ci.yml)
+
+
 # e2e-conduit-automation
 
 Playwright end-to-end automation project for the RealWorld **Conduit** app, designed as a portfolio repo to demonstrate practical test automation skills:
