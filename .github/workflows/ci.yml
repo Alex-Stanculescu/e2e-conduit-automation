@@ -29,6 +29,9 @@ jobs:
             npm install
           fi
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
       - name: Start Conduit environment (Docker Compose)
         run: npm run env:up
 
