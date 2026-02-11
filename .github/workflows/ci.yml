@@ -1,0 +1,71 @@
+name: CI - Playwright (Conduit local)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Start Conduit environment (Docker Compose)
+        run: npm run env:up
+
+      - name: Wait for API to be ready
+        run: |
+          echo "Waiting for http://localhost:3000/api/tags ..."
+          for i in {1..60}; do
+            if curl -sf http://localhost:3000/api/tags > /dev/null; then
+              echo "API is ready ?"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "API did not become ready in time ?"
+          docker compose -f infra/conduit-local/docker-compose.yml ps || true
+          docker compose -f infra/conduit-local/docker-compose.yml logs --no-color || true
+          exit 1
+
+      - name: Run Playwright tests
+        run: npm test
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+          if-no-files-found: ignore
+
+      - name: Upload test results (traces/videos/screenshots)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results
+          if-no-files-found: ignore
+
+      - name: Tear down environment
+        if: always()
+        run: npm run env:down
