@@ -30,42 +30,46 @@ Local Conduit stack (submodule):
 
 ### 1) Install dependencies
 
-npm install
+- npm install
 
 ### 2) Start the local Conduit env
 
-npm run env:up
+- npm run env:up
 
 ### 3) Run tests
 
-npm test
+- npm test
 
 ### 4) Stop env
 
-npm run env:up
+- npm run env:up
 
 
 ## Reports and artifacts
 
 ### Local HTML report:
 
-npx playwright show-report
+- npx playwright show-report
 
 
 ### Traces (on failure)
 
-npx playwright show-trace test-results/**/trace.zip
+- npx playwright show-trace test-results/**/trace.zip
 
 
 ### CI uploads
 
-playwright-report
-test-results (screenshots/videos/traces)
+- playwright-report
+
+- test-results (screenshots/videos/traces)
 
 
 ## Project Structure
 
-tests/ — Playwright test specs
-playwright.config.ts — test configuration (baseURL, reporters, timeouts)
-infra/conduit-local/ — Conduit local stack (Docker Compose) as a submodule
-.github/workflows/ci.yml — GitHub Actions pipeline
+- tests/ - Playwright test specs
+
+- playwright.config.ts - test configuration (baseURL, reporters, timeouts)
+
+- infra/conduit-local/ - Conduit local stack (Docker Compose) as a submodule
+
+- .github/workflows/ci.yml - GitHub Actions pipeline
