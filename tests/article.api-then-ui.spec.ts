@@ -34,15 +34,17 @@ async function createArticle(request: any, token: string, title: string) {
     headers: { Authorization: `Token ${token}` },
   });
   expect(res.ok()).toBeTruthy();
+
+  const json = await res.json();
+  return json.article.slug as string;
 }
 
-test("API→UI: created article appears in Global Feed", async ({ request, page }) => {
+test("API→UI: created article is visible on its page", async ({ request, page }) => {
   const token = await registerUser(request);
   const title = `Automation Article ${Date.now()}`;
 
-  await createArticle(request, token, title);
+  const slug = await createArticle(request, token, title);
 
-  await page.goto("/");
-  await page.getByText("Global Feed").click();
-  await expect(page.getByText(title)).toBeVisible();
+  await page.goto(`/article/${slug}`);
+  await expect(page.getByRole("heading", { name: title })).toBeVisible();
 });
