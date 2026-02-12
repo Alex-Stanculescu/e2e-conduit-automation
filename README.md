@@ -1,11 +1,11 @@
-[![CI - Playwright (Conduit local)](https://github.com/Alex-Stanculescu/e2e-conduit-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/Alex-Stanculescu/e2e-conduit-automation/actions/workflows/ci.yml)
+
+# e2e-conduit-automation [![CI - Playwright (Conduit local)](https://github.com/Alex-Stanculescu/e2e-conduit-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/Alex-Stanculescu/e2e-conduit-automation/actions/workflows/ci.yml)
 
 
-# e2e-conduit-automation
-
-Playwright end-to-end automation project for the RealWorld **Conduit** app, designed as a portfolio repo to demonstrate practical test automation skills:
+Playwright end-to-end automation project for the **Conduit** app, designed as a portfolio repo to demonstrate practical test automation skills:
 - **UI smoke tests**
 - **API and UI** flows (create data via API, validate via UI)
+- **Auth strategy** We create a user via API and inject the JWT into localStorage, then persist Playwright `storageState` for fast authenticated UI tests. Locators are written to handle Conduit UI variants (e.g. “New Post” vs “New Article”)
 - **Docker Compose** environment (web + API + DB)
 - **GitHub Actions CI** with uploaded artifacts (HTML report, traces/videos/screenshots)
 
